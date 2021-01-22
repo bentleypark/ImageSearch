@@ -51,6 +51,7 @@ dependencies {
     implementation Libs.viewModel
     implementation Libs.legacySupport
     implementation Libs.material
+    implementation Libs.commonJava8
 
     implementation Libs.coroutineAndroid
     implementation Libs.coroutineCore
@@ -62,10 +63,20 @@ dependencies {
     implementation Libs.loggingInterceptor
 
     implementation Libs.startUp
+    implementation Libs.navUi
+    implementation Libs.navUiKtx
+    implementation Libs.navFragment
+    implementation Libs.navFragmentKtx
 
     implementation Libs.koin
     implementation Libs.koinFragment
     implementation Libs.koinViewModel
+
+    implementation Libs.timber
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     testImplementation Libs.junit4
     androidTestImplementation Libs.junitExt

@@ -1,7 +1,8 @@
-package com.bentley.imagesearch
+package com.bentley.imagesearch.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bentley.imagesearch.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

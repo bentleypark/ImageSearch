@@ -4,6 +4,7 @@ object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildGradleVersion}"
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val navSafeArgPlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navSafArgPluginVersion}"
 
     // Kotlin
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
@@ -63,6 +64,15 @@ object Libs {
     // StartUp
     const val startUp = "androidx.startup:startup-runtime:${Versions.startupVersion}"
 
+    // Navigation
+    const val navFragment =
+            "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
+    const val navFragmentKtx =
+            "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
+    const val navUi = "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
+    const val navUiKtx =
+            "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
+
     // Google
     const val material = "com.google.android.material:material:${Versions.materialVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
@@ -109,4 +119,7 @@ object Libs {
     const val spek2Runner = "org.spekframework.spek2:spek-runner-junit5:${Versions.spek2Version}"
     const val kotlinReflection = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
     const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlinVersion}"
+
+    // Debug
+    const val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
 }
