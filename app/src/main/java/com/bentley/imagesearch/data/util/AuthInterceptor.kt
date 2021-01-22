@@ -10,7 +10,7 @@ class AuthInterceptor : Interceptor {
         val requestBuilder = chain.request().newBuilder()
         requestBuilder.header("UserBody-Agent", "android")
         requestBuilder.addHeader("Content-Type", "application/json")
-        requestBuilder.addHeader("Content-Authorization", AUTHORIZATION_KEY)
+        requestBuilder.addHeader("Authorization", AUTHORIZATION_KEY)
 
         return chain.proceed(requestBuilder.build())
     }

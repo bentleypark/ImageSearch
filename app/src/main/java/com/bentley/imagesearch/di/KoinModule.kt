@@ -16,7 +16,10 @@ object KoinModule {
             androidContext(context)
             fragmentFactory()
             modules(
-                listOf(dataModule)
+                listOf(
+                    dataModule,
+                    presentModule
+                )
             )
         }
     }

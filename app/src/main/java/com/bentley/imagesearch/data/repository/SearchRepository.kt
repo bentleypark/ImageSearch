@@ -5,5 +5,5 @@ import com.bentley.imagesearch.domain.Image
 
 interface SearchRepository {
 
-    suspend fun searchUsers(query: String, page: Int): List<Image>
+    suspend fun search(query: String, page: Int): List<Image>
 }

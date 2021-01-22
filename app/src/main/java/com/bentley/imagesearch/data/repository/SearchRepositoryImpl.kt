@@ -8,9 +8,8 @@ import com.bentley.imagesearch.domain.Image
 class SearchRepositoryImpl constructor(
     private val apiService: ApiService,
     private val imageMapper: ImageMapper
-) :
-    SearchRepository {
-    override suspend fun searchUsers(query: String, page: Int): List<Image> {
+) : SearchRepository {
+    override suspend fun search(query: String, page: Int): List<Image> {
 
         val result = apiService.searchUsers(query, page, PAGE_SIZE)
         return imageMapper.mapFromEntity(result.imageList)
