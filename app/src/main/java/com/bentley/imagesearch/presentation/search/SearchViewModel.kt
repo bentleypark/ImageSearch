@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class SearchViewModel(private val searchUsecase: SearchUseCase) : ViewModel() {
+class SearchViewModel(private val searchUseCase: SearchUseCase) : ViewModel() {
 
     fun search() {
         viewModelScope.launch {
-            searchUsecase.searchUsers("bentley")
+            searchUseCase.searchUsers("bentley")
                 .onEach { dataState ->
                     Timber.d(dataState.toString())
                 }
