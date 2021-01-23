@@ -78,6 +78,8 @@ object Libs {
     // Google
     const val material = "com.google.android.material:material:${Versions.materialVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
 
     // Junit
     const val junit4 = "junit:junit:${Versions.junitVersion}"

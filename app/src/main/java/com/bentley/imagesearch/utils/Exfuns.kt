@@ -1,15 +1,20 @@
 package com.bentley.imagesearch.utils
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -72,4 +77,12 @@ fun View.makeSnackBar(text: String) {
 fun Fragment.makeToast(text: String) {
     val toast = Toast.makeText(activity, text, Toast.LENGTH_SHORT)
     toast.show()
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun String.formatDateTime(): String {
+    val formatter =
+        DateTimeFormatter.ofPattern("yyyy년 MM월 dd일, E요일, a h:mm").withZone(ZoneId.of("Asia/Seoul"))
+    val zoneDate = ZonedDateTime.parse(this, DateTimeFormatter.ISO_DATE_TIME)
+    return zoneDate.format(formatter)
 }

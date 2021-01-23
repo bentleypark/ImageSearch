@@ -2,14 +2,19 @@ package com.bentley.imagesearch.presentation.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.imageLoader
+import coil.load
 import coil.request.ImageRequest
 import com.bentley.imagesearch.databinding.ItemSearchResultBinding
 import com.bentley.imagesearch.domain.Image
+import com.bentley.imagesearch.utils.Diff
 
 class SearchListAdapter(
-    private val list: MutableList<Image>) :
+    private val list: MutableList<Image>
+) :
     RecyclerView.Adapter<SearchListAdapter.SearchListViewHolder>() {
 
     private lateinit var binding: ItemSearchResultBinding
@@ -24,7 +29,18 @@ class SearchListAdapter(
                     .target(ivImg)
                     .build()
                 imageLoader.enqueue(request)
-//                ivImg.load(item.thumbnailUrl)
+                ivImg.load(item.thumbnailUrl)
+
+                imageItem.setOnClickListener {
+                    it.findNavController()
+                        .navigate(
+                            SearchFragmentDirections.actionSearchFragmentToDetailFragment(
+                                item.imageUrl,
+                                item.siteName,
+                                item.datetime
+                            )
+                        )
+                }
             }
         }
     }
@@ -43,9 +59,13 @@ class SearchListAdapter(
     override fun getItemCount() = list.size
 
     fun addAll(newList: List<Image>) {
+        val diffCallback = Diff(list, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         list.clear()
         list.addAll(newList)
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun add(newList: List<Image>) {

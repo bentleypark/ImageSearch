@@ -41,6 +41,7 @@ object Versions {
     const val materialVersion = "1.2.1"
     const val gsonVersion = "2.8.6"
     const val truthVersion = "1.1"
+    const val glide_version = "4.11.0"
 
     // Square
     const val retrofitVersion = "2.9.0"

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.bentley.imagesearch.R
 import com.bentley.imagesearch.databinding.FragmentSearchBinding
 import com.bentley.imagesearch.presentation.base.BaseFragment
@@ -17,6 +18,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
@@ -49,6 +51,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
             searchList.apply {
                 adapter = searchListAdapter
+                (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
                 setHasFixedSize(true)
                 layoutManager = GridLayoutManager(requireContext(), 3).apply {
                     orientation = GridLayoutManager.VERTICAL
@@ -86,11 +89,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 textChanges()
                     .debounce(1_000, TimeUnit.MILLISECONDS)
                     .subscribeOn(Schedulers.io())
-                    .subscribe {
+                    .subscribe({
                         if (it.toString().isNotEmpty()) {
                             performSearch()
                         }
-                    }
+                    }, { throwable -> Timber.e(throwable) })
             }
         }
     }
