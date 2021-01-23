@@ -23,7 +23,7 @@ object Versions {
     const val legacySupportVersion = "1.0.0"
     const val activityVersion = "1.2.0-rc01"
     const val fragmentVersion = "1.3.0-rc01"
-    const val recyclerviewVersion = "1.1.0"
+    const val recyclerviewVersion = "1.2.0-beta01"
     const val viewpager2Version = "1.0.0"
     const val swipeRefreshLayoutVersion = "1.1.0"
     const val databindingVersion = "4.1.2"

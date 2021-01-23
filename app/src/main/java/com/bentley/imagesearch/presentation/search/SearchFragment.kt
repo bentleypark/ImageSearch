@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.bentley.imagesearch.R
 import com.bentley.imagesearch.databinding.FragmentSearchBinding
@@ -48,16 +49,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         binding.apply {
 
             searchListAdapter = SearchListAdapter(mutableListOf())
-
             searchList.apply {
                 adapter = searchListAdapter
+                adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
                 (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
                 setHasFixedSize(true)
                 layoutManager = GridLayoutManager(requireContext(), 3).apply {
                     orientation = GridLayoutManager.VERTICAL
                 }
 
-                addOnScrollListener(object :
+                    addOnScrollListener(object :
                     PaginationScrollListener(this.layoutManager as GridLayoutManager) {
                     override fun isLastPage(): Boolean {
                         return isLastPage

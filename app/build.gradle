@@ -53,6 +53,7 @@ dependencies {
     implementation Libs.legacySupport
     implementation Libs.material
     implementation Libs.commonJava8
+    implementation Libs.recyclerview
 
     implementation Libs.coroutineAndroid
     implementation Libs.coroutineCore
@@ -76,8 +77,6 @@ dependencies {
     implementation Libs.timber
     implementation Libs.coil
     implementation Libs.rxBinding
-    implementation Libs.glide
-    kapt Libs.glideCompiler
 
     testImplementation Libs.junit4
     androidTestImplementation Libs.junitExt

@@ -18,8 +18,6 @@ import com.bentley.imagesearch.utils.formatDateTime
 @RequiresApi(Build.VERSION_CODES.O)
 class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
-    private lateinit var viewModel: DetailViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

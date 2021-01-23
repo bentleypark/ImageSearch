@@ -12,6 +12,7 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
+            app:launchSingleTop="true"
             app:destination="@id/detailFragment" />
     </fragment>
 
