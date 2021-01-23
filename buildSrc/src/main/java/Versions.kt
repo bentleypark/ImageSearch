@@ -65,4 +65,10 @@ object Versions {
     // Speck2
     const val junitPlatformVersion = "1.7.0"
     const val spek2Version = "2.0.14"
+
+    // Coil
+    const val coilVersion = "1.1.1"
+
+    // RxBinding
+    const val rxbinding_version = "3.1.0"
 }

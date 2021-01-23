@@ -4,7 +4,8 @@ object Libs {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildGradleVersion}"
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-    const val navSafeArgPlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navSafArgPluginVersion}"
+    const val navSafeArgPlugin =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navSafArgPluginVersion}"
 
     // Kotlin
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
@@ -14,7 +15,8 @@ object Libs {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutineVersion}"
     const val coroutineCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutineVersion}"
-    const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutineVersion}"
+    const val coroutineTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutineVersion}"
 
     // rx java
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJavaVersion}"
@@ -66,12 +68,12 @@ object Libs {
 
     // Navigation
     const val navFragment =
-            "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
+        "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
     const val navFragmentKtx =
-            "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
     const val navUi = "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
     const val navUiKtx =
-            "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
+        "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
 
     // Google
     const val material = "com.google.android.material:material:${Versions.materialVersion}"
@@ -113,8 +115,10 @@ object Libs {
     const val mockito = "org.mockito:mockito-inline:${Versions.mockitoVersion}"
 
     // Speck2
-    const val juintPlatformEngine = "org.junit.platform:junit-platform-engine:${Versions.junitPlatformVersion}"
-    const val junitPlatformRunner = "org.junit.platform:junit-platform-runner:${Versions.junitPlatformVersion}"
+    const val juintPlatformEngine =
+        "org.junit.platform:junit-platform-engine:${Versions.junitPlatformVersion}"
+    const val junitPlatformRunner =
+        "org.junit.platform:junit-platform-runner:${Versions.junitPlatformVersion}"
     const val spek2DslJvm = "org.spekframework.spek2:spek-dsl-jvm:${Versions.spek2Version}"
     const val spek2Runner = "org.spekframework.spek2:spek-runner-junit5:${Versions.spek2Version}"
     const val kotlinReflection = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
@@ -122,4 +126,10 @@ object Libs {
 
     // Debug
     const val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
+
+    // Colil
+    const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
+
+    // RxBinding
+    const val rxBinding = "com.jakewharton.rxbinding3:rxbinding:${Versions.rxbinding_version}"
 }

@@ -5,11 +5,9 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.core.component.KoinApiExtension
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@KoinApiExtension
 class ApiManager {
     companion object {
         fun getService(): ApiService {

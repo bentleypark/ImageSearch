@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class SearchResponse(
     @SerializedName("documents")
     val imageList: List<ImageEntity>,
+    @SerializedName("meta")
+    val metaInfo: MetaInfo,
 )
 
 data class ImageEntity(
@@ -18,4 +20,13 @@ data class ImageEntity(
     val imageUrl: String,
     @SerializedName("thumbnail_url")
     val thumbnailUrl: String,
+)
+
+data class MetaInfo(
+    @SerializedName("is_end")
+    val isEnd: Boolean,
+    @SerializedName("pageable_count")
+    val pageCount: Int,
+    @SerializedName("total_count")
+    val total: Int,
 )
