@@ -10,12 +10,17 @@
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ImageSearch">
-        <activity android:name=".presentation.MainActivity">
+        android:theme="@style/Theme.ImageSearch"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".presentation.detail.DetailActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden" />
+        <activity
+            android:name=".presentation.MainActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +30,9 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            tools:node="merge"
             android:authorities="${applicationId}.androidx-startup"
-            android:exported="false">
+            android:exported="false"
+            tools:node="merge">
             <meta-data
                 android:name="com.bentley.imagesearch.utils.TimberInitializer"
                 android:value="androidx.startup" />

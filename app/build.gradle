@@ -77,6 +77,9 @@ dependencies {
     implementation Libs.timber
     implementation Libs.coil
     implementation Libs.rxBinding
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     testImplementation Libs.junit4
     androidTestImplementation Libs.junitExt

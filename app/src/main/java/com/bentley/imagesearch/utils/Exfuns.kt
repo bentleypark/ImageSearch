@@ -79,7 +79,7 @@ fun Fragment.makeToast(text: String) {
     toast.show()
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun String.formatDateTime(): String {
     val formatter =
         DateTimeFormatter.ofPattern("yyyy년 MM월 dd일, E요일, a h:mm").withZone(ZoneId.of("Asia/Seoul"))

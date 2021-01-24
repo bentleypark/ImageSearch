@@ -8,20 +8,19 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.bentley.imagesearch.R
 import com.bentley.imagesearch.databinding.FragmentSearchBinding
 import com.bentley.imagesearch.presentation.base.BaseFragment
 import com.bentley.imagesearch.utils.*
 import com.jakewharton.rxbinding3.widget.textChanges
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinApiExtension
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
+@KoinApiExtension
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     private val viewModel: SearchViewModel by viewModel()
@@ -40,25 +39,23 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupView()
         setupObserve()
     }
 
     private fun setupView() {
+        Timber.d("setupView")
         binding.apply {
 
             searchListAdapter = SearchListAdapter(mutableListOf())
             searchList.apply {
                 adapter = searchListAdapter
-                adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-                (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
                 setHasFixedSize(true)
                 layoutManager = GridLayoutManager(requireContext(), 3).apply {
                     orientation = GridLayoutManager.VERTICAL
                 }
 
-                    addOnScrollListener(object :
+                addOnScrollListener(object :
                     PaginationScrollListener(this.layoutManager as GridLayoutManager) {
                     override fun isLastPage(): Boolean {
                         return isLastPage
@@ -103,13 +100,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         binding.apply {
             viewModel.apply {
                 searchResult.observe(viewLifecycleOwner, { result ->
+                    ivDefaultImg.makeGone()
                     progressCircular.makeGone()
-                    if (result.isNotEmpty()) {
-                        ivDefaultImg.makeGone()
-                        searchList.makeVisible()
 
-                        searchListAdapter.addAll(result)
+                    if (result.isNotEmpty()) {
+                        lifecycleScope.launch {
+                            searchListAdapter.addAll(result)
+                            delay(1500)
+                            searchList.makeVisible()
+                        }
                     } else {
+                        progressCircular.makeGone()
                         tvNoResult.makeVisible()
                     }
                 })

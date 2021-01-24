@@ -1,8 +1,8 @@
 package com.bentley.imagesearch.presentation.search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.imageLoader
@@ -10,6 +10,7 @@ import coil.load
 import coil.request.ImageRequest
 import com.bentley.imagesearch.databinding.ItemSearchResultBinding
 import com.bentley.imagesearch.domain.Image
+import com.bentley.imagesearch.presentation.detail.DetailActivity
 import com.bentley.imagesearch.utils.Diff
 
 class SearchListAdapter(
@@ -32,14 +33,13 @@ class SearchListAdapter(
                 ivImg.load(item.thumbnailUrl)
 
                 imageItem.setOnClickListener {
-                    it.findNavController()
-                        .navigate(
-                            SearchFragmentDirections.actionSearchFragmentToDetailFragment(
-                                item.imageUrl,
-                                item.siteName,
-                                item.datetime
-                            )
-                        )
+                    val intent = Intent(it.context,DetailActivity::class.java).apply {
+                        putExtra("imageUrl", item.imageUrl)
+                        putExtra("siteName", item.siteName)
+                        putExtra("datetime", item.datetime)
+                    }
+                    intent.putExtra("imageUrl", item.imageUrl)
+                    it.context.startActivity(intent)
                 }
             }
         }
