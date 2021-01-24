@@ -12,9 +12,12 @@ import com.bentley.imagesearch.databinding.ItemSearchResultBinding
 import com.bentley.imagesearch.domain.Image
 import com.bentley.imagesearch.presentation.detail.DetailActivity
 import com.bentley.imagesearch.utils.Diff
+import com.bentley.imagesearch.utils.isConnected
+import kotlin.reflect.KFunction0
 
 class SearchListAdapter(
-    private val list: MutableList<Image>
+    private val list: MutableList<Image>,
+    private val networkErrorCallback: KFunction0<Unit>
 ) :
     RecyclerView.Adapter<SearchListAdapter.SearchListViewHolder>() {
 
@@ -33,13 +36,17 @@ class SearchListAdapter(
                 ivImg.load(item.thumbnailUrl)
 
                 imageItem.setOnClickListener {
-                    val intent = Intent(it.context,DetailActivity::class.java).apply {
-                        putExtra("imageUrl", item.imageUrl)
-                        putExtra("siteName", item.siteName)
-                        putExtra("datetime", item.datetime)
+                    if (it.context.isConnected()) {
+                        val intent = Intent(it.context, DetailActivity::class.java).apply {
+                            putExtra("imageUrl", item.imageUrl)
+                            putExtra("siteName", item.siteName)
+                            putExtra("datetime", item.datetime)
+                        }
+                        intent.putExtra("imageUrl", item.imageUrl)
+                        it.context.startActivity(intent)
+                    } else {
+                        networkErrorCallback()
                     }
-                    intent.putExtra("imageUrl", item.imageUrl)
-                    it.context.startActivity(intent)
                 }
             }
         }

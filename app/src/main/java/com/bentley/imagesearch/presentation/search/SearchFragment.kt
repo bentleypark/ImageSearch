@@ -44,10 +44,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     private fun setupView() {
-        Timber.d("setupView")
         binding.apply {
 
-            searchListAdapter = SearchListAdapter(mutableListOf())
+            searchListAdapter = SearchListAdapter(mutableListOf(), this@SearchFragment::showNetworkError)
             searchList.apply {
                 adapter = searchListAdapter
                 setHasFixedSize(true)
@@ -129,29 +128,38 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     private fun performSearch() {
-        binding.apply {
-            val query = SpannableStringBuilder(etSearch.text).toString().trim()
-            if (query.isNotEmpty()) {
-                searchJob?.cancel()
-                searchJob = lifecycleScope.launch {
+        if (requireContext().isConnected()) {
+            binding.apply {
+                val query = SpannableStringBuilder(etSearch.text).toString().trim()
+                if (query.isNotEmpty()) {
+                    searchJob?.cancel()
+                    searchJob = lifecycleScope.launch {
 
-                    searchListAdapter.clear()
-                    progressCircular.makeVisible()
-                    ivDefaultImg.makeGone()
-                    tvNoResult.makeGone()
-                    searchList.makeGone()
+                        searchListAdapter.clear()
+                        progressCircular.makeVisible()
+                        ivDefaultImg.makeGone()
+                        tvNoResult.makeGone()
+                        searchList.makeGone()
 
-                    etSearch.apply {
-                        clearFocus()
-                        hideKeyboard()
+                        etSearch.apply {
+                            clearFocus()
+                            hideKeyboard()
+                        }
+                        delay(500)
+                        viewModel.search(query)
                     }
-                    delay(500)
-                    viewModel.search(query)
+                } else {
+                    requireContext().makeToast(getString(R.string.no_search_query))
                 }
-            } else {
-                makeToast(getString(R.string.no_search_query))
             }
+        } else {
+            showNetworkError()
         }
     }
 
+    private fun showNetworkError() {
+        lifecycleScope.launch {
+            requireContext().makeToast(getString(R.string.network_error_msg))
+        }
+    }
 }

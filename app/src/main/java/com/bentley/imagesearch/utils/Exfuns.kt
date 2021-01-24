@@ -1,6 +1,7 @@
 package com.bentley.imagesearch.utils
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -74,8 +75,8 @@ fun View.makeSnackBar(text: String) {
     Snackbar.make(this, text, Snackbar.LENGTH_SHORT).show()
 }
 
-fun Fragment.makeToast(text: String) {
-    val toast = Toast.makeText(activity, text, Toast.LENGTH_SHORT)
+fun Context.makeToast(text: String) {
+    val toast = Toast.makeText(this, text, Toast.LENGTH_SHORT)
     toast.show()
 }
 
@@ -85,4 +86,10 @@ fun String.formatDateTime(): String {
         DateTimeFormatter.ofPattern("yyyy년 MM월 dd일, E요일, a h:mm").withZone(ZoneId.of("Asia/Seoul"))
     val zoneDate = ZonedDateTime.parse(this, DateTimeFormatter.ISO_DATE_TIME)
     return zoneDate.format(formatter)
+}
+
+fun Context.isConnected(): Boolean {
+    val connectivityManager =
+        (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetwork
+    return connectivityManager != null
 }
