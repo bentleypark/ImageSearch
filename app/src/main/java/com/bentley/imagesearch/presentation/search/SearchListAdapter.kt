@@ -72,4 +72,9 @@ class SearchListAdapter(
         list.addAll(newList)
         notifyDataSetChanged()
     }
+
+    fun clear() {
+        list.clear()
+        notifyDataSetChanged()
+    }
 }

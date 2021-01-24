@@ -101,12 +101,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             viewModel.apply {
                 searchResult.observe(viewLifecycleOwner, { result ->
                     ivDefaultImg.makeGone()
-                    progressCircular.makeGone()
 
                     if (result.isNotEmpty()) {
                         lifecycleScope.launch {
                             searchListAdapter.addAll(result)
-                            delay(1500)
+                            delay(500)
+                            progressCircular.makeGone()
+                            delay(1200)
                             searchList.makeVisible()
                         }
                     } else {
@@ -134,6 +135,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 searchJob?.cancel()
                 searchJob = lifecycleScope.launch {
 
+                    searchListAdapter.clear()
                     progressCircular.makeVisible()
                     ivDefaultImg.makeGone()
                     tvNoResult.makeGone()
@@ -143,6 +145,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                         clearFocus()
                         hideKeyboard()
                     }
+                    delay(500)
                     viewModel.search(query)
                 }
             } else {
