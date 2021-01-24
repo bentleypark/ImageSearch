@@ -17,10 +17,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.detail.DetailActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden" />
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.MainActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden">
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
